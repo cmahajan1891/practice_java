@@ -1,2 +1,2 @@
-# Practice java
+# Practice Java
 java data structures and algorithms
