@@ -50,7 +50,7 @@ public class BinaryTreeNode {
 			return this.toString1();
 		}
 		else{
-			String root, left="null", right="null";
+			String root="", left="null", right="null";
 			root = this.toString1();
 			if (getLeft()!=null) {
 				left = this.getLeft().toString();
@@ -99,5 +99,18 @@ public class BinaryTreeNode {
 			right = this.getRight().reverse();
 		}
 		return new BinaryTreeNode(this.data, right, left);
+	}
+
+	public BinaryTreeNode reverseInPlace(){
+		if (getLeft()!=null) {
+			left.reverseInPlace();
+		}
+		if (getRight()!=null) {
+			right.reverseInPlace();
+		}
+		BinaryTreeNode tmp = this.left;
+		this.setLeft(this.right);
+		this.setRight(tmp);
+
 	}
 }
