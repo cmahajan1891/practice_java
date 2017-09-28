@@ -1,0 +1,77 @@
+import java.util.*;
+
+class FindPowerSet {
+  List<List<Integer>> findPowerSet(List<Integer> list) {
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    for (int i = 0; i < list.size(); i++) {
+      int sz = i + 1;
+      ArrayList<Integer> tmp = new ArrayList<>();
+      for (int j = 0; j < list.size() ; j++) {
+        int cnt = 0;
+        if (j+sz <= list.size()) {
+          while(cnt < sz ){
+
+            if (j + cnt >= list.size()) {
+              break;
+            }
+            tmp.add(list.get(j+cnt));
+            cnt++;
+          }
+        }
+      }
+      res.add(tmp);
+    }
+    return res;
+  }
+
+  // Print all subsets of given set[]
+  static void printSubsets(char set[])
+  {
+      int n = set.length;
+
+      // Run a loop for printing all 2^n
+      // subsets one by obe
+      for (int i = 0; i < (1<<n); i++)
+      {
+          System.out.print("{ ");
+
+          // Print current subset
+          for (int j = 0; j < n; j++)
+              //{
+                // (1<<j) is a number with jth bit 1
+                // so when we 'and' them with the
+                // subset number we get which numbers
+                // are present in the subset and which
+                // are not
+                //System.out.print("-");
+                if ((i & (1 << j)) > 0)
+                    System.out.print(set[j] + " ");
+              //}
+          System.out.println("}");
+      }
+  }
+
+  public static void main(String[] args) {
+    FindPowerSet fps = new FindPowerSet();
+    List<Integer> pr = new ArrayList<>();
+    pr.add(1);
+    pr.add(2);
+    pr.add(3);
+    List<List<Integer>> list = fps.findPowerSet(pr);
+    for (int i = 0; i < list.size(); i++) {
+      List<Integer> tp = list.get(i);
+      int sm = i + 1;
+      //System.out.print("{");
+      int cnt = 0;
+      for (int m : tp) {
+        if (sm == cnt) {
+          //System.out.print("}{");
+        }
+        //System.out.print(m);
+        cnt ++;
+      }
+      //System.out.println("}");
+    }
+    FindPowerSet.printSubsets(new char[] {'a', 'b', 'c'});
+  }
+}
