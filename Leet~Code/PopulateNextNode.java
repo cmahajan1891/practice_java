@@ -76,5 +76,5 @@ class PopulateNextNode {
     PopulateNextNode p = new PopulateNextNode();
     p.populateNext(b);
   }
-
+// TODO Practice the other way to solve the problem as well by using the last head, last current, current head and current last.
 }
