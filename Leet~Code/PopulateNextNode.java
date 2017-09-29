@@ -9,27 +9,58 @@ class BinaryTreeNode {
   }
 }
 class PopulateNextNode {
+  // This method is only correct to display a cloned structure but not modify the actual tree.
+  // static void populateNext(BinaryTreeNode root) {
+  //   Queue<BinaryTreeNode> q = new LinkedList<>();
+  //   q.add(root);
+  //   q.add(null);
+  //   while (!q.isEmpty()) {
+  //     BinaryTreeNode tmp = q.remove();
+  //     if (tmp!=null) {
+  //       System.out.print(tmp.n);
+  //       System.out.print("-->");
+  //       if (tmp.left!=null) {
+  //         q.add(tmp.left);
+  //       }
+  //       if (tmp.right!=null) {
+  //         q.add(tmp.right);
+  //       }
+  //     }else {
+  //       if (!q.isEmpty()) {
+  //         q.add(null);
+  //       }
+  //       System.out.print("NULL");
+  //       System.out.println();
+  //     }
+  //   }
+  // }
+
+  //In order to modfiy the structure of the main tree follow the following algorithm.
   static void populateNext(BinaryTreeNode root) {
-    Queue<BinaryTreeNode> q = new LinkedList<>();
-    q.add(root);
-    q.add(null);
-    while (!q.isEmpty()) {
-      BinaryTreeNode tmp = q.remove();
-      if (tmp!=null) {
-        System.out.print(tmp.n);
-        System.out.print("-->");
-        if (tmp.left!=null) {
-          q.add(tmp.left);
-        }
-        if (tmp.right!=null) {
-          q.add(tmp.right);
-        }
+    if (root == null) {
+      return ;
+    }
+    Queue<BinaryTreeNode> nodeQueue = new LinkedList<>();
+    LinkedList<Integer> depthQueue = new LinkedList<>();
+    nodeQueue.offer(root);
+    depthQueue.offer(1);
+    while (!nodeQueue.isEmpty()) {
+      BinaryTreeNode tmp = nodeQueue.poll();
+      Integer depth = depthQueue.poll();
+      if (depthQueue.isEmpty()) {
+        tmp.next = null;
+      }else if (depthQueue.peek()>depth) {
+        tmp.next = null;
       }else {
-        if (!q.isEmpty()) {
-          q.add(null);
-        }
-        System.out.print("NULL");
-        System.out.println();
+        tmp.next = nodeQueue.peek();
+      }
+      if (tmp.left!=null) {
+        nodeQueue.offer(tmp.left);
+        depthQueue.offer(depth+1);
+      }
+      if (tmp.right!=null) {
+        nodeQueue.offer(tmp.right);
+        depthQueue.offer(depth+1);
       }
     }
   }
