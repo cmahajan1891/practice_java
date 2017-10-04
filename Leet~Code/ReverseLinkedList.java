@@ -7,13 +7,19 @@ class ListNode {
 }
 class ReverseLinkedList {
   void reverse(ListNode root) {
-    ListNode tmp = root, prev = null;
-    while (tmp != null) {
-        ListNode r = new ListNode(tmp.val);
-        r.next = prev;
-        prev = r;
-        tmp = tmp.next;
+    ListNode curr = root, prev = null, next = null;
+    while (curr != null) {
+      next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+        // ListNode r = new ListNode(tmp.val);
+        //next = tmp.next;
+        //r.next = prev;
+        //prev = r;
+        //tmp = tmp.next;
     }
+    //root = prev; return prev O(1) Space
 
     while (prev != null) {
       System.out.println(prev.val);
