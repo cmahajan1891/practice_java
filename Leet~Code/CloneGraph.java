@@ -13,24 +13,24 @@ class UndirectedGraphNode {
 }
 
 class CloneGraph {
-  public UndirectedGraphNode CloneGraph(UndirectedGraphNode g){
+  public UndirectedGraphNode cloneGraph(UndirectedGraphNode g){
     if (g == null) {
       return null;
     }
     Queue<UndirectedGraphNode> q = new LinkedList<>();
     HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
     UndirectedGraphNode newHead = new UndirectedGraphNode(g.label);
-    q.offer(newHead);
+    q.offer(g);
     map.put(g, newHead);
     while (!q.isEmpty()) {
       UndirectedGraphNode curr = q.poll();
-      ArrayList<UndirectedGraphNode> neighbors = curr.neighbors;
+      List<UndirectedGraphNode> neighbors = curr.neighbors;
       for (UndirectedGraphNode node : neighbors) {
         if (!map.containsKey(node)) {
           UndirectedGraphNode cpy = new UndirectedGraphNode(node.label);
           map.put(node, cpy);
           map.get(curr).neighbors.add(cpy);
-          q.offer(neighbors);
+          q.offer(node);
         }else {
           map.get(curr).neighbors.add(map.get(node));
         }
