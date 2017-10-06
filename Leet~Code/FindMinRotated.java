@@ -19,7 +19,7 @@ class FindMinRotated {
     if (arr[start]<arr[end]) {
       return arr[start];
     }
-    else if (arr[mid]<arr[start]) {
+    else if (arr[mid] < arr[start]) {
       return findMin(start, mid, arr);
     }else {
       return findMin(mid, end, arr);
