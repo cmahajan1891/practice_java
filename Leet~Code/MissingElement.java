@@ -18,10 +18,10 @@ class MissingElement {
     for (int i = 0; i < nums.length; i++) {
 
       miss^= i+1^nums[i];
-      System.out.print(i+1^nums[i]);
-      System.out.print(" -- ");
-      System.out.print(miss);
-      System.out.print("--  --");
+      //System.out.print(i+1^nums[i]);
+      //System.out.print(" -- ");
+      //System.out.print(miss);
+      //System.out.print("--  --");
     }
     return miss;
   }
